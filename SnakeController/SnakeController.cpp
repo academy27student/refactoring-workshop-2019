@@ -219,15 +219,16 @@ void Controller::receive(std::unique_ptr<Event> e)
         if(e->getMessageId() == 0x20)
             handleTimePassed(*static_cast<EventT<TimeoutInd> const&>(*e));
 
-        if(e->getMessageId() == 0x10)
+        else if(e->getMessageId() == 0x10)
             handleDirectionChange(*static_cast<EventT<DirectionInd> const&>(*e));
 
-        if(e->getMessageId() == 0x40)
+        else if(e->getMessageId() == 0x40)
             handleFoodPositionChange(*static_cast<EventT<FoodInd> const&>(*e));
 
-        if(e->getMessageId() == 0x42)
+        else if(e->getMessageId() == 0x42)
             handleNewFood(*static_cast<EventT<FoodResp> const&>(*e));
-
+        else
+            throw;
         } catch (std::bad_cast&) {
             throw UnexpectedEventException();
         }
