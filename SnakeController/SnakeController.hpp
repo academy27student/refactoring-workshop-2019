@@ -5,6 +5,7 @@
 
 #include "IEventHandler.hpp"
 #include "SnakeInterface.hpp"
+#include "EventT.hpp"
 
 class Event;
 class IPort;
@@ -48,11 +49,6 @@ private:
     void handleFoodInd(std::unique_ptr<Event>);
     void handleFoodResp(std::unique_ptr<Event>);
     void handlePauseInd(std::unique_ptr<Event>);
-
-    void updateSegmentsIfSuccessfullMove(Position position);
-    void addHeadSegment(Position position);
-    void removeTailSegmentIfNotScored(Position position);
-    void removeTailSegment();
 
     void updateFoodPosition(Position position, std::function<void()> clearPolicy);
     void sendClearOldFood();
